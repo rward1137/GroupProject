@@ -2,70 +2,79 @@
 # The Student class works as part of a school registration system.
 # Student object has methods to add and drop itself from courses as well
 # as return the courses in which student is currently enrolled.
-# !!! Proposal: Student object has a method to move itself
-#               from wait-list to roster
+# Proposing wait-list functionality.
 # RW - 11/18/21
 ##
-
 class Student:
-    # initialize student object with necessary variables
-    def __init__(self, name='', id='', finaid=0.0):
-        self.id = id
-        self.name = name
-        self.finaid = finaid
-
-    # Add student to course, with three conditions:
-    # the course exists, student not yet enrolled, and there's a seat
+    # Add student to course, on three conditions:
+    # the course exists, student not yet enrolled, and there's a spot
     # parameters:
-    # (string) student ID, (dictionary) courses w/ rosters, (dictionary) class size.
-    # !!! Proposal: Add a c_wait_list dictionary of the each course w/ an ordered
-    # list of students waiting to enroll if a seat opens up
+    # (str) student ID
+    # (dict) courses w/ rosters
+    # (dict) courses w/ # of seats
+    # !!! Proposal: Add a c_wait_list dict parameter;
+    # key is course ID, value is list of ID numbers
+    # of students waiting to enroll if a seat opens up
     def add_course(self, id, c_roster, c_max_size, c_wait_list):
         # user input
-        usr_input = ''
-        usr_input = input('Enter course you want to add:').capitalize()
-        # test for match in course dictionary, else display message and return
-        if usr_input not in c_roster:
+        usr_input = input('Enter course you want to add:')
+        # test for match in course dictionary,
+        # else display message and return
+        if usr_input not in list(c_roster.keys()):
             print('course not found')
             return
-        # test if student is already enrolled, if so display message and return
-        elif self.id in c_roster.getelement(usr_input):
+        # test if student is already enrolled,
+        # if so display message and return
+        elif str(id) in c_roster[usr_input]:
             print('already enrolled')
             return
-        # test if there is a seat for student,
-        elif c_max_size.getelement(usr_input) == len(c_roster.getelement(usr_input)):
-        # else wait-list student then display message and return
+        # test if the course is already full
+        elif c_max_size[usr_input] == len(c_roster[usr_input]):
+            # wait-list student then display message and return
             if usr_input in c_wait_list:
-                # a wait-list exists for course
-                c_wait_list.getelement(usr_input).append(self)
+                # a wait-list exists for course already
+                c_wait_list[usr_input].append(str(id))
                 print('course full, added to wait-list')
+                print(c_wait_list[usr_input])
                 return
             else:
                 # create wait-list for course
-                c_wait_list[usr_input] = self
+                c_wait_list[usr_input] = str(id)
                 print('course full, added to wait-list')
                 return
-        # all test conditions met, then add student to c_roster
+        # all test conditions passed, add student to c_roster
         else:
-            c_roster.getelement(usr_input).append(self)
-        # display a message
-        # return
-
+            c_roster[usr_input].append(str(id))
+            print('course added')
+            return
 
     # Drop student from course, with two conditions:
     # the course exists and student is enrolled
     # parameters:
-    # (string) student ID, (dict) courses w/ rosters, (dict) courses w/ # seats
-    def drop_course(self, id, c_roster, c_wait_list):
+    # (str) student ID
+    # (dict) courses w/ rosters
+    def drop_course(self, id, c_roster):
         # user input
-        # test that course is in the dictionary, else display message and return
-        # test that student is enrolled, else display message and return
+        usr_input = input('Enter course you want to drop:')
+        # test for match in course dictionary,
+        # else display message and return
+        if usr_input not in list(c_roster.keys()):
+            print('course not found')
+            return
+        # test if student is enrolled,
+        # else display message and return
+        elif str(id) not in c_roster[usr_input]:
+            print('not enrolled')
+            return
         # both test conditions met, then remove student from c_roster
-        # display a message
-        # !!! Proposal: this method returns a boolean (and a course id string?) to the
-        # main, indicating if student did or did not successfully drop course.
-        # If returns true, main must use wait-list dictionary to call
-        # wait_list_add for the student who is next in line.
+        else:
+            c_roster[usr_input].remove(str(id))
+            print('course dropped')
+            # !!! Proposal:
+            # call method to check for a wait-list and add the next person in line
+            return
+
+# Still working on everything below here! :) 
 
 
     # !!! Proposal:
