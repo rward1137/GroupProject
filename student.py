@@ -74,7 +74,12 @@ class Student:
             # call method to check for a wait-list and add the next person in line
             return
 
-# Still working on everything below here! :) 
+        
+        
+        
+# Still working on everything below here!  :)  :)  :) 
+
+
 
 
     # !!! Proposal:
@@ -82,7 +87,7 @@ class Student:
     # (I'm thinking main will determine if there's a wait-list and who's next on it)
     # parameters:
     # (str) student id, (str) course id, (dict) courses w/ rosters, (dict) courses w/ wait-lists
-    def wait_list_add(self, id, course_id, c_roster, c_wait_list):
+    # def wait_list_add(self, id, course_id, c_roster, c_wait_list):
         # remove student from wait-list
         # add student to course roster
         # (no message to display for current user, correct? This method is called by main after
@@ -92,7 +97,7 @@ class Student:
     # Display and count number of courses student is enrolled in.
     # parameters: (str) student id, (dict) courses w/ rosters
     # !!! Proposal: pass in c_wait_list too, so that wait-list info can be displayed
-    def list_courses(self, id, c_roster):
+    # def list_courses(self, id, c_roster):
         # count variable = 0
         # list of courses variable = []
         # for each course in c_roster
