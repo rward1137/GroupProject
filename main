@@ -1,4 +1,4 @@
-from student import Student
+import student
 
 
 def main():
@@ -16,12 +16,11 @@ def main():
                      'CSC103': ['1002'],
                      'CSC104': []}
     course_max_size = {'CSC101': 3, 'CSC102': 2, 'CSC103': 1, 'CSC104': 3}
-    course_wait_list = {'CSC103': []}
+    course_wait_list = {'CSC103': ['1004']}
 
-    student1 = Student()
-
-    student1.add_course('1001', course_roster, course_max_size, course_wait_list)
-    student1.drop_course('1001', course_roster)
+    student.add_course('1003', course_roster, course_max_size, course_wait_list)
+    student.drop_course('1004', course_roster, course_wait_list)
+    student.list_courses('1004', course_roster, course_wait_list)
 
 
 main()
