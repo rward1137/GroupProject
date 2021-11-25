@@ -52,9 +52,8 @@ def add_course(id, c_roster, c_max_size, c_wait_list):
 # the course exists and student is enrolled
 # !!! Proposal: If student is on wait-listed,
 # drop_course method will remove them from the wait-list.
-# Also propose adding c_wait_list reference to the list of
-# parameters for this method so the reference can be passed
-# to check_wait_list method.
+# !!! Proposal: If a student drops a course, the method
+# wait_list_get_next is called
 # parameters:
 # (str) student ID
 # (dict) courses w/ rosters
@@ -90,7 +89,7 @@ def drop_course(id, c_roster, c_wait_list):
 
 # !!! Proposal:
 # This method will be called at the end of the drop_course method
-# if a student drops their course. It checks for a wait-list and
+# if a student drops a course. It checks for a wait-list and
 # if one exists, it adds the next person in line.
 # parameters:
 # (str) course id
