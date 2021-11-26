@@ -17,7 +17,7 @@
 # of students waiting to enroll if a seat opens up
 def add_course(id, c_roster, c_max_size, c_wait_list):
     # user input
-    usr_input = input('Enter course you want to add:')
+    usr_input = input('Enter course you want to add: ')
     # test for match in course dictionary,
     # else display message and return
     if usr_input not in list(c_roster.keys()):
@@ -26,7 +26,7 @@ def add_course(id, c_roster, c_max_size, c_wait_list):
     # test if student is already enrolled,
     # if so display message and return
     elif str(id) in c_roster[usr_input]:
-        print('Already enrolled')
+        print('You are already enrolled in that course')
         return
     # test if the course is already full
     elif c_max_size[usr_input] == len(c_roster[usr_input]):
@@ -38,7 +38,7 @@ def add_course(id, c_roster, c_max_size, c_wait_list):
             return
         else:
             # create wait-list for course
-            c_wait_list[usr_input] = str(id)
+            c_wait_list[usr_input] = [str(id)]
             print('Course full, added to wait-list')
             return
     # all test conditions passed, add student to c_roster
@@ -69,13 +69,14 @@ def drop_course(id, c_roster, c_wait_list):
     # test if student is enrolled,
     # else display message and return
     elif str(id) not in c_roster[usr_input]:
-        if id in c_wait_list[usr_input]:
-            # !!! Proposal:
-            # call method to remove a student from the wait-list
-            c_wait_list[usr_input].remove(id)
-            print('Removed from wait-list')
+        if usr_input in c_wait_list.keys():
+            if str(id) in c_wait_list[usr_input]:
+                # !!! Proposal:
+                # remove student from the wait-list
+                w_list = c_wait_list[usr_input]
+                print('Removed from wait-list')
         else:
-            print('Not enrolled')
+            print('You are not enrolled in that course')
         return
     # both test conditions met, then remove student from c_roster
     else:
