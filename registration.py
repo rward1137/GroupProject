@@ -23,11 +23,11 @@ def main():
     # courses. This function has no return value.
     # -------------------------------------------------------------
 
-    # The Student List -- is a list of tuples??
+    # The Student List -- is a list of tuples?? Yup.
     student_list = [('1001', '111'), ('1002', '222'),
                     ('1003', '333'), ('1004', '444')]
 
-    # The In-State List -- is a dictionary?
+    # The In-State List -- is a dictionary? Yes! :)
     student_in_state = {'1001': True,
                         '1002': False,
                         '1003': True,
@@ -63,16 +63,23 @@ def main():
             if login(id, student_list):
                 break
             else:
+                id = input('\nEnter ID to log in, or 0 to quit: ')
+                # if user enters zero, program should quit
+                if id == '0':
+                    break
                 continue
-        response = -1
-        while response != 0:
+        # if user enters zero, program should quit
+        if id == '0':
+            break
+        response = ''
+        while response != '0':
             # Ask the user for the item type they are adding.
-            response = input('Enter 1 to add course, 2 to drop course, '
-                             '3 to list courses, 4 to show bill, 0 to exit:')
+            response = input('\nEnter 1 to add course, 2 to drop course, '
+                             '3 to list courses, 4 to show bill, 0 to exit: ')
             # if entry is invalid ask again
             while response not in ['0', '1', '2', '3', '4']:
-                response = input('Enter 1 to add course, 2 to drop course, '
-                                 '3 to list courses, 4 to show bill, 0 to exit:')
+                response = input('\nEnter 1 to add course, 2 to drop course, '
+                                 '3 to list courses, 4 to show bill, 0 to exit: ')
             # Call appropriate method
             if response == '1':
                 student.add_course(id, course_roster, course_max_size, course_wait_list)
@@ -83,6 +90,7 @@ def main():
             elif response == '4':
                 billing.calculate_hours_and_bill(id, student_in_state, course_roster, course_hours)
             else:
+                print('Session Ended\n')
                 break
 
 
@@ -97,10 +105,10 @@ def login(id, s_list):
     pin = input('Enter your pin: ')
     entry = (id, pin)
     if entry in s_list:
-        print('ID verified.')
+        print('ID and PIN verified.')
         return True
     else:
-        print('Invalid entry. Please try again.')
+        print('ID or PIN incorrect. Please try again.')
         return False
 
 
