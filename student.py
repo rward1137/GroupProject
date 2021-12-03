@@ -33,14 +33,15 @@ def add_course(id, c_roster, c_max_size, c_wait_list):
         # wait-list student then display message and return
         if usr_input in c_wait_list.keys():
             # a wait-list exists for course already
-            c_wait_list[usr_input].append(str(id))
-            print('Course full, added to wait-list')
-            return
-        else:
-            # create wait-list for course
-            c_wait_list[usr_input] = [str(id)]
-            print('Course full, added to wait-list')
-            return
+# !!!! This if statement needs to be added to Jackie's student.py file:
+            # functionality for someone adding a course when they're already wait-listed.
+            if id not in c_wait_list[usr_input]:
+                c_wait_list[usr_input].append(id)
+                print('Course full, added to wait-list')
+                return
+            else:
+                print('You are already wait-listed for that course.')
+                return
     # all test conditions passed, add student to c_roster
     else:
         c_roster[usr_input].append(str(id))
@@ -73,7 +74,7 @@ def drop_course(id, c_roster, c_wait_list):
             if str(id) in c_wait_list[usr_input]:
                 # !!! Proposal:
                 # remove student from the wait-list
-                w_list = c_wait_list[usr_input]
+                c_wait_list[usr_input].remove(id)
                 print('Removed from wait-list')
         else:
             print('You are not enrolled in that course')
