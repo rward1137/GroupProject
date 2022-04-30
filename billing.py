@@ -1,5 +1,5 @@
 #
-# Edward Jenkins, Jacqueline Chambliss, Rachel Ward
+# Edward Jenkins
 # 12/5/2021
 # Python Project: Billing Module
 #
