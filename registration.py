@@ -1,14 +1,6 @@
-# ----------------------------------------------------------------
-# Author:
-# Date:
-#
-# This program creates a class registration system.  It allows
-# students to add courses, drop courses and list courses they are registered for.
-# (in the student module)
-#
-# It also allows students to review the tuition costs for their course roster.
-# (in the billing module)
-# -----------------------------------------------------------------
+##
+# Jacqueline Chambliss, Rachel Ward, Edward Jenkins - 12/4/21
+##
 import student
 import billing
 
@@ -23,11 +15,11 @@ def main():
     # courses. This function has no return value.
     # -------------------------------------------------------------
 
-    # The Student List -- is a list of tuples?? Yup.
+    # The Student List -- list of tuples
     student_list = [('1001', '111'), ('1002', '222'),
                     ('1003', '333'), ('1004', '444')]
 
-    # The In-State List -- is a dictionary? Yes! :)
+    # The In-State List -- dictionary
     student_in_state = {'1001': True,
                         '1002': False,
                         '1003': True,
@@ -46,8 +38,6 @@ def main():
     course_max_size = {'CSC101': 3, 'CSC102': 2, 'CSC103': 1, 'CSC104': 3}
 
     # Course Wait List
-    # RW - I changed this to a dictionary with a list as the value,
-    # instead of an integer. This could be why we got errors on the first run.
     course_wait_list = {'CSC101': []}
 
     while True:
